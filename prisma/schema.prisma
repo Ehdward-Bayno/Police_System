@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // PostgreSQL connection is now read from the .env file
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String   @unique
+  badgeNumber String   @unique
+  password    String
+  createdAt   DateTime @default(now())
+
+  documents   Document[]
+}
+
+model Officer {
+  id          Int      @id @default(autoincrement())
+  name        String
+  rank        String?
+  badgeNumber String   @unique
+  createdAt   DateTime @default(now())
+
+  cases       Case[]
+}
+
+model Case {
+  id          Int      @id @default(autoincrement())
+  caseNumber  String   @unique
+  caseTitle   String
+  officerId   Int?
+  description String?
+  status      String   @default("Open")
+  createdAt   DateTime @default(now())
+
+  officer     Officer?    @relation(fields: [officerId], references: [id])
+  respondents Respondent[]
+  documents   Document[]
+}
+
+model Respondent {
+  id            Int      @id @default(autoincrement())
+  caseId        Int
+  name          String
+  rank          String?
+  unit          String?
+  justification String?
+  remarks       String?
+  createdAt     DateTime @default(now())
+
+  case          Case     @relation(fields: [caseId], references: [id])
+}
+
+model Document {
+  id           Int      @id @default(autoincrement())
+  caseId       Int
+  fileName     String
+  filePath     String
+  documentType String?
+  uploadedBy   Int?
+  createdAt    DateTime @default(now())
+
+  case         Case     @relation(fields: [caseId], references: [id])
+  user         User?    @relation(fields: [uploadedBy], references: [id])
+}
