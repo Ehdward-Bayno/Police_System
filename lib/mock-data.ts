@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 // Mock data for the application when PHP API is not available
 
+=======
+>>>>>>> fb3bf7cf9b3167aad1cfc0ab7d9b91837188eb8b
 import { MOCK_DATA_DELAY } from "./config"
 
 // Types

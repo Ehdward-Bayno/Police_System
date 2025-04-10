@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 // This file provides utility functions to connect the Next.js frontend with PHP backend
 
+=======
+>>>>>>> fb3bf7cf9b3167aad1cfc0ab7d9b91837188eb8b
 import { USE_REAL_API, PHP_API_URL } from "./config"
 import {
   getMockRecentActivity,

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 // File upload handling
+=======
+>>>>>>> fb3bf7cf9b3167aad1cfc0ab7d9b91837188eb8b
 document.addEventListener("DOMContentLoaded", () => {
   const fileUploadArea = document.getElementById("file-upload-area")
   const fileInput = document.getElementById("file-input")

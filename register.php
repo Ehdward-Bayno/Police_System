@@ -25,7 +25,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = 'All fields are required.';
         } elseif ($password !== $confirm_password) {
             $error = 'Passwords do not match.';
+<<<<<<< HEAD
         } elseif (strlen($password) < 6) {
+=======
+        } elseif (strlen(string: $password) < 6) {
+>>>>>>> fb3bf7cf9b3167aad1cfc0ab7d9b91837188eb8b
             $error = 'Password must be at least 6 characters long.';
         } else {
             // Connect to database
@@ -33,8 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // Check if email already exists
             $existing_user = $db->fetch(
+<<<<<<< HEAD
                 "SELECT * FROM users WHERE email = :email",
                 [':email' => $email]
+=======
+                sql: "SELECT * FROM users WHERE email = :email",
+                params: [':email' => $email]
+>>>>>>> fb3bf7cf9b3167aad1cfc0ab7d9b91837188eb8b
             );
             
             if ($existing_user) {
@@ -42,8 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 // Check if badge number already exists
                 $existing_badge = $db->fetch(
+<<<<<<< HEAD
                     "SELECT * FROM users WHERE badge_number = :badge_number",
                     [':badge_number' => $badge_number]
+=======
+                    sql: "SELECT * FROM users WHERE badge_number = :badge_number",
+                    params: [':badge_number' => $badge_number]
+>>>>>>> fb3bf7cf9b3167aad1cfc0ab7d9b91837188eb8b
                 );
                 
                 if ($existing_badge) {
@@ -54,8 +68,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     
                     // Insert user
                     $user_id = $db->insert(
+<<<<<<< HEAD
                         "INSERT INTO users (name, email, badge_number, password) VALUES (:name, :email, :badge_number, :password)",
                         [
+=======
+                        sql: "INSERT INTO users (name, email, badge_number, password) VALUES (:name, :email, :badge_number, :password)",
+                        params: [
+>>>>>>> fb3bf7cf9b3167aad1cfc0ab7d9b91837188eb8b
                             ':name' => $name,
                             ':email' => $email,
                             ':badge_number' => $badge_number,
